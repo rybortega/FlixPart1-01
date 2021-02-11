@@ -38,6 +38,10 @@ public class Movie {
         return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
     }
 
+    public int getVoteAverage() {
+        return voteAverage;
+    }
+
     public String getTitle() {
         return title;
     }
