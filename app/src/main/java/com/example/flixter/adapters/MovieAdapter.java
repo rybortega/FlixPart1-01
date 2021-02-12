@@ -25,7 +25,7 @@ import com.example.flixter.models.Movie;
 import java.security.InvalidKeyException;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHolder>{
     public static  final int POPULAR = 1;
     public static  final  int CRASH = 0;
 
@@ -40,7 +40,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     @NonNull
     @Override
-    public MovieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType == 1) {
             View movieView1 = LayoutInflater.from(context).inflate(R.layout.item_popular, parent, false);
             return  new ViewHolderPopular(movieView1);
@@ -52,9 +52,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BindViewHolder holder, int position) {
         Movie movie = movies.get(position);
         holder.bind(movie);
+
     }
 
     @Override
@@ -64,7 +65,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(movies.get(position).getVoteAverage() >= 5) {
+        if(movies.get(position).getVoteAverage() >= 7) {
             return POPULAR;
         }
         else {
@@ -72,7 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends BindViewHolder {
 
         TextView tvTitle;
         TextView tvOverview;
@@ -109,7 +110,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         }
     }
 
-    public class ViewHolderPopular extends ViewHolder {
+    public class ViewHolderPopular extends BindViewHolder {
         ImageView ivBackdrop;
 
         public ViewHolderPopular(@NonNull View itemView) {
@@ -120,6 +121,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public void bind(Movie movie) {
             Glide.with(context).load(movie.getBackdropPath()).placeholder(R.drawable.ic_launcher_background).into(ivBackdrop);
         }
+    }
+
+    abstract class BindViewHolder extends RecyclerView.ViewHolder
+    {
+        public BindViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public abstract void bind(Movie movie);
     }
 }
 
