@@ -1,5 +1,6 @@
 package com.example.flixter.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,7 +19,9 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -38,10 +41,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
 
     Context context;
     List<Movie> movies;
+    Activity activity;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public MovieAdapter(Context context, List<Movie> movies, Activity activity) {
         this.context = context;
         this.movies = movies;
+        this.activity = activity;
     }
 
 
@@ -121,7 +126,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
                 public void onClick(View v) {
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
-                    context.startActivity(i);
+                    ActivityOptionsCompat options = ActivityOptionsCompat
+                            .makeSceneTransitionAnimation(activity,
+                                    Pair.create((View)tvTitle, "title"),
+                                    Pair.create((View)tvOverview, "overview"));
+                    context.startActivity(i, options.toBundle());
                 }
             });
         }
@@ -155,11 +164,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
     {
         public BindViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
-
-        private void OnClick(View v, Context context)
-        {
-
         }
 
         public abstract void bind(Movie movie);
