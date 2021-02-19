@@ -143,13 +143,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
 
     public class ViewHolderPopular extends BindViewHolder {
         ImageView ivBackdrop;
+        //ImageView ivIcon;
         RelativeLayout container;
 
         public ViewHolderPopular(@NonNull View itemView) {
             super(itemView);
             ivBackdrop = itemView.findViewById(R.id.popularView);
             container = itemView.findViewById(R.id.rvMovies);
-
+            //ivIcon = itemView.findViewById(R.id.playIcon);
         }
 
         public void bind(Movie movie) {
