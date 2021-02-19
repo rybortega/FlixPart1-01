@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.module.AppGlideModule;
 
 import androidx.annotation.NonNull;
@@ -120,7 +121,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
             else {
                 imageUrl = movie.getPosterPath();
             }
-            Glide.with(context).load(imageUrl).placeholder(R.drawable.ic_launcher_background).into(ivPoster);
+            Glide.with(context)
+                    .load(imageUrl)
+                    .transform(new RoundedCorners(30))
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(ivPoster);
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -148,7 +153,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
         }
 
         public void bind(Movie movie) {
-            Glide.with(context).load(movie.getBackdropPath()).placeholder(R.drawable.ic_launcher_background).into(ivBackdrop);
+            Glide.with(context)
+                    .load(movie.getBackdropPath())
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(ivBackdrop);
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
