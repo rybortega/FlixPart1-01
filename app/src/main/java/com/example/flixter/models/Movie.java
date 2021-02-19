@@ -1,19 +1,25 @@
 package com.example.flixter.models;
 
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+@Parcel
+public class Movie  {
     String posterPath;
     String title;
     String overview;
     String backdropPath;
     int voteAverage;
     int id;
+
+    public Movie(){}
 
     public  Movie(JSONObject jsonObject) throws JSONException {
         backdropPath = jsonObject.getString("backdrop_path");
