@@ -1,6 +1,7 @@
 package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,8 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixter.adapters.MovieAdapter;
+import com.example.flixter.databinding.ActivityMainBinding;
+import com.example.flixter.databinding.ItemMovieBinding;
 import com.example.flixter.models.Movie;
 
 import org.json.JSONArray;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static  final String NOW_PLAYING_URL= "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public  static final String TAG = "MainActivity";
+    public  static  final int POPULAR_THRESHOLD = 7;
+    private ActivityMainBinding mainBinding;
+    public ItemMovieBinding movieBinding;
 
     List<Movie> movies;
 
@@ -35,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        movieBinding = DataBindingUtil.setContentView(this, R.layout.item_movie);
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        RecyclerView rvMovies = mainBinding.rvMovies;
         movies = new ArrayList<>();
 
-        MovieAdapter movieAdapter = new MovieAdapter(this, movies);
+        MovieAdapter movieAdapter = new MovieAdapter(this, movies, this);
 
         rvMovies.setAdapter(movieAdapter);
 

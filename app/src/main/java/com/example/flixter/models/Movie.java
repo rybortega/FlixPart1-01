@@ -1,18 +1,25 @@
 package com.example.flixter.models;
 
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+@Parcel
+public class Movie  {
     String posterPath;
     String title;
     String overview;
     String backdropPath;
     int voteAverage;
+    int id;
+
+    public Movie(){}
 
     public  Movie(JSONObject jsonObject) throws JSONException {
         backdropPath = jsonObject.getString("backdrop_path");
@@ -20,6 +27,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         voteAverage = jsonObject.getInt("vote_average");
+        id = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJSONArray) throws JSONException {
@@ -48,5 +56,9 @@ public class Movie {
 
     public String getOverview() {
         return overview;
+    }
+
+    public int getMovieId() {
+        return id;
     }
 }
