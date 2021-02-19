@@ -1,6 +1,7 @@
 package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.flixter.databinding.ActivityDetailBinding;
+import com.example.flixter.databinding.ActivityMainBinding;
 import com.example.flixter.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -32,17 +35,20 @@ public class DetailActivity extends YouTubeBaseActivity {
     TextView tvOverview;
     RatingBar ratingBar;
     YouTubePlayerView youTubePlayerView;
+    ActivityDetailBinding detailBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        detailBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
 
-        tvTitle = findViewById(R.id.tvTitle2);
-        tvOverview = findViewById(R.id.tvOverview2);
-        ratingBar = findViewById(R.id.ratingBar);
-        youTubePlayerView = findViewById(R.id.player);
+        tvTitle = detailBinding.tvTitle2;
+        tvOverview = detailBinding.tvOverview2;
+        ratingBar = detailBinding.ratingBar;
+        youTubePlayerView = detailBinding.player;
+
 
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         tvTitle.setText(movie.getTitle());

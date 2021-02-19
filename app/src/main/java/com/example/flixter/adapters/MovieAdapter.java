@@ -23,12 +23,15 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixter.DetailActivity;
 import com.example.flixter.MainActivity;
 import com.example.flixter.R;
+import com.example.flixter.databinding.ItemMovieBinding;
+import com.example.flixter.databinding.ItemPopularBinding;
 import com.example.flixter.models.Movie;
 
 import org.parceler.Parcels;
@@ -43,6 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
     Context context;
     List<Movie> movies;
     Activity activity;
+
 
     public MovieAdapter(Context context, List<Movie> movies, Activity activity) {
         this.context = context;
@@ -92,13 +96,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
         TextView tvOverview;
         ImageView ivPoster;
         RelativeLayout container;
+        final ItemMovieBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            container = itemView.findViewById(R.id.rvMovies);
+            binding = ItemMovieBinding.bind(itemView);
+            tvTitle = binding.tvTitle;
+            tvOverview = binding.tvOverview;
+            ivPoster = binding.ivPoster;
+            container = binding.rvMovies;
         }
 
         public void bind(Movie movie) {
@@ -106,12 +112,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
             tvOverview.setText(movie.getOverview());
             if(this.getLayoutPosition() % 2 == 1)
             {
-                itemView.findViewById(R.id.rvMovies).setBackgroundColor(Color.parseColor("#e8e8e8"));
+                container.setBackgroundColor(Color.parseColor("#e8e8e8"));
                 tvOverview.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_view_border2));
             }
             else
             {
-                itemView.findViewById(R.id.rvMovies).setBackgroundColor(Color.parseColor("#FFFFFF"));
+                container.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 tvOverview.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_view_border1));
             }
             String imageUrl;
@@ -143,14 +149,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
 
     public class ViewHolderPopular extends BindViewHolder {
         ImageView ivBackdrop;
-        //ImageView ivIcon;
         RelativeLayout container;
+        final ItemPopularBinding binding;
+
 
         public ViewHolderPopular(@NonNull View itemView) {
             super(itemView);
-            ivBackdrop = itemView.findViewById(R.id.popularView);
-            container = itemView.findViewById(R.id.rvMovies);
-            //ivIcon = itemView.findViewById(R.id.playIcon);
+            binding = ItemPopularBinding.bind(itemView);
+            ivBackdrop = binding.popularView;
+            container = binding.rvMovies;
         }
 
         public void bind(Movie movie) {
