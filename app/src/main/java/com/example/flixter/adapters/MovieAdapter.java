@@ -78,7 +78,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if(movies.get(position).getVoteAverage() >= 7) {
+        if(movies.get(position).getVoteAverage() >= MainActivity.POPULAR_THRESHOLD) {
             return POPULAR;
         }
         else {
