@@ -19,7 +19,7 @@
             android:transitionName="title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Wonder Woman 1984"
+            tools:text=""
             android:textSize="30sp"/>
 
         <RatingBar
@@ -36,6 +36,6 @@
             android:transitionName="overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+            tools:text="" />
     </LinearLayout>
 </layout>

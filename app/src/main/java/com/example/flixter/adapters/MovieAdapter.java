@@ -112,12 +112,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
             tvOverview.setText(movie.getOverview());
             if(this.getLayoutPosition() % 2 == 1)
             {
-                container.setBackgroundColor(Color.parseColor("#e8e8e8"));
+                container.setBackgroundResource(R.color.gray);
                 tvOverview.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_view_border2));
             }
             else
             {
-                container.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                container.setBackgroundResource(R.color.white);
                 tvOverview.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_view_border1));
             }
             String imageUrl;
@@ -156,7 +156,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.BindViewHold
         public ViewHolderPopular(@NonNull View itemView) {
             super(itemView);
             binding = ItemPopularBinding.bind(itemView);
-            ivBackdrop = binding.popularView;
+            ivBackdrop = binding.ivPopular;
             container = binding.rvMovies;
         }
 

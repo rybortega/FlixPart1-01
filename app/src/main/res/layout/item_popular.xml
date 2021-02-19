@@ -9,7 +9,7 @@
         android:id="@+id/rvMovies">
 
         <ImageView
-            android:id="@+id/popularView"
+            android:id="@+id/ivPopular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
