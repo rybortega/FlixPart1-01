@@ -57,7 +57,7 @@ To get the borders only on one side of the text block was harder than I expected
 ### App Walkthough GIF
 
 
-<img src="unit2walk1.gif" width=250><br>
+<img src="unit2walk2.gif" width=250><br>
 
 ### Notes
 
