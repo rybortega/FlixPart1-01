@@ -6,22 +6,27 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 
 ## Flix Part 1
 
-### User Stories
-#### REQUIRED (10pts)
-- [X] (10pts) User can view a list of movies (title, poster image, and overview) currently playing in theaters from the Movie Database API.
+### Features
+#### REQUIRED (18pts)
+- [X] (6pts) **Make a request to [The Movie Database API's `now_playing`](https://developers.themoviedb.org/3/movies/get-now-playing) endpoint to get a list of current movies**
+- [X] (6pts) **Parse through JSON data and implement a RecyclerView to display all movies**
+- [X] (6pts) **Use Glide to load and display movie poster images**
 
-#### BONUS
-- [X] (2pts) Views should be responsive for both landscape/portrait mode.
-   - [X] (1pt) In portrait mode, the poster image, title, and movie overview is shown.
-   - [X] (1pt) In landscape mode, the rotated alternate layout should use the backdrop image instead and show the title and movie overview to the right of it.
+#### OPTIONAL
+- [ ] Improve and customize the user interface through styling and coloring
+- [X] Implement orientation responsivity
+  - App should neatly arrange data in both landscape and portrait mode
+- [X] Implement Glide to display placeholder graphics during loading
+  - Note: this feature is difficult to capture in a GIF without throttling internet speeds.  Instead, include an additional screencap of your Glide code implementing the feature.  (<10 lines of code)
 
-- [X] (2pts) Display a nice default [placeholder graphic](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading
-- [X] (2pts) Improved the user interface by experimenting with styling and coloring.
-- [X] (2pts) For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous RecyclerViews and use different ViewHolder layout files for popular movies and less popular ones.
+The following **additional** features are implemented:
+
+- [ ] List anything else that you can get done to improve the app functionality!
 
 ### App Walkthough GIF
 
 <img src="https://github.com/akp5896/flix/blob/master/walk4.gif" width=250><br>
+
 
 ### Notes
 I've set the vopular movie to the seven for the walkthrogh, because otherwise only about two movies were not popular.
